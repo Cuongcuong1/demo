@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :products
+  resource :session
+  resource :unsubscribe, only: [ :show ]
+
+  resources :passwords, param: :token
+  resources :products do
+    resources :subscribers, only: [ :create ]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
